@@ -1,0 +1,43 @@
+<idea-plugin version="2">
+  <id>com.github.itechbear.intellij-clangassistant</id>
+  <name>ClangAssistant</name>
+  <version>1.0</version>
+  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-ClangAssistant">itechbear@github</vendor>
+
+  <description><![CDATA[
+      An intellij idea plugin that provides extra information by org.llvm.clang.
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Initial commit.
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.cidr.lang</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+      <!--<psi.referenceContributor implementation="com.github.itechbear.macroexpansion.reference.contributor.ClangAssistantReferenceContributor" order="before default" />-->
+      <!--<psi.referenceProvider providerClass="com.github.itechbear.macroexpansion.reference.provider.ClangAssistantPsiReferenceProvider" />-->
+      <documentationProvider  implementation="com.github.itechbear.macroexpansion.provider.MacroDocumentationProvider" />
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
