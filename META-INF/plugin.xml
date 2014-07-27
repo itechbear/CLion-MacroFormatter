@@ -1,8 +1,8 @@
 <idea-plugin version="2">
-  <id>com.github.itechbear.intellij-clangassistant</id>
-  <name>ClangAssistant</name>
+  <id>com.github.itechbear.intellij-macroexpansion</id>
+  <name>MacroExpansion</name>
   <version>1.0</version>
-  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-ClangAssistant">itechbear@github</vendor>
+  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-MacroExpansion">itechbear@github</vendor>
 
   <description><![CDATA[
       An intellij idea plugin that provides extra information by org.llvm.clang.
@@ -23,8 +23,6 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-      <!--<psi.referenceContributor implementation="com.github.itechbear.macroexpansion.reference.contributor.ClangAssistantReferenceContributor" order="before default" />-->
-      <!--<psi.referenceProvider providerClass="com.github.itechbear.macroexpansion.reference.provider.ClangAssistantPsiReferenceProvider" />-->
       <documentationProvider  implementation="com.github.itechbear.macroexpansion.provider.MacroDocumentationProvider" />
   </extensions>
 
