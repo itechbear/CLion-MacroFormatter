@@ -31,7 +31,8 @@ public class MacroDocumentationProvider implements DocumentationProvider {
 //        VirtualFile virtualFile = file.getVirtualFile();
         String expansion = ((OCMacroCall) parent).getReplacementText();
 
-        return "Macro Expansion: \n" + Formatter.format(psiElement2, expansion);
+        // return "Macro Expansion: \n" + Formatter.format(psiElement2, expansion);
+        return "Macro Expansion: \n" + expansion;
     }
 
     @Nullable
