@@ -5,7 +5,7 @@
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-MacroExpansion">itechbear@github</vendor>
 
   <description><![CDATA[
-      An intellij idea plugin that provides extra information by org.llvm.clang.
+      A jetbrains c++ ide plugin that shows macro expansion in the quick navigation info panel.
     ]]></description>
 
   <change-notes><![CDATA[
