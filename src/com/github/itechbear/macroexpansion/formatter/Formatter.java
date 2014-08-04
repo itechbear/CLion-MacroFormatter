@@ -1,28 +1,13 @@
 package com.github.itechbear.macroexpansion.formatter;
 
-import com.intellij.codeEditor.printing.FileSeparatorProvider;
-import com.intellij.codeInsight.daemon.LineMarkerInfo;
-import com.intellij.ide.highlighter.HighlighterFactory;
 import com.intellij.lang.Language;
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.highlighter.EditorHighlighter;
-import com.intellij.openapi.editor.highlighter.HighlighterIterator;
-import com.intellij.openapi.editor.markup.TextAttributes;
-import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Comparing;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.impl.PsiFileFactoryImpl;
-import com.intellij.psi.util.PsiUtilBase;
-import org.jetbrains.annotations.NonNls;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * Created by nicholas on 7/27/14.
@@ -32,7 +17,9 @@ public class Formatter {
         Project project = psiElement.getProject();
         Language language = psiElement.getLanguage();
         String formatted = format(project, language, text);
-        return wrap(formatted);
+        String escaped = StringEscapeUtils.escapeHtml(formatted);
+        String whitespaced = escaped.replaceAll(" ", "&nbsp;");
+        return wrap(whitespaced);
     }
 
     public static String format(final Project project, Language language, String text) {
@@ -46,10 +33,11 @@ public class Formatter {
         };
         command.execute();
         String formatted = psiFile.getText();
+        psiFile.delete();
         if (formatted == null) {
             return text;
         }
-        return formatted.replace(" ", "&nbsp;");
+        return formatted;
     }
 
     public static String getFontname() {

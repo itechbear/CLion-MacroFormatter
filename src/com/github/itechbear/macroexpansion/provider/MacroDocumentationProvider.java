@@ -24,15 +24,9 @@ public class MacroDocumentationProvider implements DocumentationProvider {
         if (!(parent instanceof OCMacroCall)) {
             return null;
         }
-//        OCFile file = ((OCMacroReferenceElementImpl) psiElement2).getContainingOCFile();
-//        if (file == null) {
-//            return null;
-//        }
-//        VirtualFile virtualFile = file.getVirtualFile();
         String expansion = ((OCMacroCall) parent).getReplacementText();
 
         return Formatter.format(psiElement2, expansion);
-        // return "Macro Expansion: \n" + expansion;
     }
 
     @Nullable
