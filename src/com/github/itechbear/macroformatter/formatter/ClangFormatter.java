@@ -25,7 +25,7 @@ public class ClangFormatter {
     public static String format(String text) {
         String clang_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
         if (clang_path == null || clang_path.isEmpty()) {
-            return text;
+            clang_path = "clang-format";
         }
 
         String code_style = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
