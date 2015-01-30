@@ -9,6 +9,7 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.impl.PsiFileFactoryImpl;
 import org.apache.commons.lang.StringEscapeUtils;
 
+
 /**
  * Created by nicholas on 7/27/14.
  */
@@ -24,16 +25,23 @@ public class Formatter {
 
     public static String format(final Project project, Language language, String text) {
         final PsiFile psiFile = PsiFileFactoryImpl.getInstance(project).createFileFromText("virtual", language, text);
-        WriteCommandAction.Simple<String> command = new WriteCommandAction.Simple<String>(project, psiFile) {
 
+        new WriteCommandAction.Simple<String>(project, psiFile) {
             @Override
             protected void run() throws Throwable {
                 CodeStyleManager.getInstance(project).reformat(psiFile, false);
             }
-        };
-        command.execute();
+        }.execute();
+
         String formatted = psiFile.getText();
-        psiFile.delete();
+
+        new WriteCommandAction.Simple<String>(project, psiFile) {
+            @Override
+            protected void run() throws Throwable {
+                psiFile.delete();
+            }
+        }.execute();
+
         if (formatted == null) {
             return text;
         }

@@ -1,29 +1,35 @@
 <idea-plugin version="2">
-  <id>com.github.itechbear.intellij-macroexpansion</id>
+  <id>com.github.itechbear.clion-macroexpansion</id>
   <name>MacroExpansion</name>
   <version>1.0</version>
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-MacroExpansion">itechbear@github</vendor>
 
   <description><![CDATA[
-      A jetbrains c++ ide plugin that shows macro expansion in the quick navigation info panel.
+      A clion plugin that shows <b>formatted</b> macro expansion in the documentation panel(Ctrl + Q).
     ]]></description>
 
   <change-notes><![CDATA[
+      0.2
+      Switch to clang-format.
+
+      0.1
       Initial commit.
     ]]>
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
+  <idea-version since-build="138"/>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
   <depends>com.intellij.modules.lang</depends>
-  <depends>com.intellij.modules.cidr.lang</depends>
+  <depends>com.intellij.modules.clion</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-      <documentationProvider  implementation="com.github.itechbear.macroexpansion.provider.MacroDocumentationProvider" />
+    <lang.documentationProvider language="ObjectiveC" implementationClass="com.github.itechbear.macroexpansion.provider.MacroDocumentationProvider" order="first" />
+    <applicationConfigurable instance="com.github.itechbear.macroexpansion.option.ConfigurationPanel"
+                             displayName="Macro Expansion"/>
   </extensions>
 
   <application-components>
