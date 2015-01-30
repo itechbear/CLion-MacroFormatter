@@ -7,6 +7,8 @@
   <description><![CDATA[
       A clion plugin that shows <b>formatted</b> macro expansion in the documentation panel(Ctrl + Q). <br /><br />
 
+      <b>You need to install clang-format(usually included in the clang package) to use this plugin.</b><br /><br />
+
       Two screenshots that shows the difference betwwen without and with this plugin are attached.
     ]]></description>
 
