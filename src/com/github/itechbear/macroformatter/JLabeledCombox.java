@@ -1,4 +1,4 @@
-package com.github.itechbear.macroexpansion;
+package com.github.itechbear.macroformatter;
 
 import javax.swing.*;
 import java.awt.*;

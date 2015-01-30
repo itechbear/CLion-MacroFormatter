@@ -1,4 +1,4 @@
-package com.github.itechbear.macroexpansion.formatter;
+package com.github.itechbear.macroformatter.formatter;
 
 import com.intellij.lang.Language;
 import com.intellij.openapi.command.WriteCommandAction;

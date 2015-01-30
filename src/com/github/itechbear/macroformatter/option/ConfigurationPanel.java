@@ -1,8 +1,8 @@
-package com.github.itechbear.macroexpansion.option;
+package com.github.itechbear.macroformatter.option;
 
-import com.github.itechbear.macroexpansion.JFilePicker;
-import com.github.itechbear.macroexpansion.JLabeledCombox;
-import com.github.itechbear.macroexpansion.MacroExpansionSettings;
+import com.github.itechbear.macroformatter.JFilePicker;
+import com.github.itechbear.macroformatter.JLabeledCombox;
+import com.github.itechbear.macroformatter.MacroFormatterSettings;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.ui.components.panels.VerticalLayout;
@@ -25,13 +25,13 @@ public class ConfigurationPanel implements Configurable {
     private OptionModifiedListener listener = new OptionModifiedListener(this);
     private ComboxItemListener combox_listener = new ComboxItemListener(this);
 
-    public static final String OPTION_KEY_CLANG = "macroexpansion.clang";
-    public static final String OPTION_KEY_STYLE = "macroexpansion.style";
+    public static final String OPTION_KEY_CLANG = "macroformatter.clang";
+    public static final String OPTION_KEY_STYLE = "macroformatter.style";
 
     @Nls
     @Override
     public String getDisplayName() {
-        return "Macro Expansion";
+        return "Macro Formatter";
     }
 
     @Nullable
@@ -73,17 +73,17 @@ public class ConfigurationPanel implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
-        MacroExpansionSettings.set(OPTION_KEY_CLANG, jFilePickerClang.getTextField().getText());
-        MacroExpansionSettings.set(OPTION_KEY_STYLE, String.valueOf(jLabeledCombox.getCombobox().getSelectedItem()));
+        MacroFormatterSettings.set(OPTION_KEY_CLANG, jFilePickerClang.getTextField().getText());
+        MacroFormatterSettings.set(OPTION_KEY_STYLE, String.valueOf(jLabeledCombox.getCombobox().getSelectedItem()));
         modified = false;
     }
 
     @Override
     public void reset() {
-        String clang_path = MacroExpansionSettings.get(OPTION_KEY_CLANG);
+        String clang_path = MacroFormatterSettings.get(OPTION_KEY_CLANG);
         jFilePickerClang.getTextField().setText(clang_path);
 
-        String code_style = MacroExpansionSettings.get(OPTION_KEY_STYLE);
+        String code_style = MacroFormatterSettings.get(OPTION_KEY_STYLE);
         if (code_style != null && !code_style.isEmpty()) {
             jLabeledCombox.getCombobox().setSelectedItem(code_style);
         }

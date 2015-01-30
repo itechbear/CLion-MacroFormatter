@@ -1,7 +1,7 @@
-package com.github.itechbear.macroexpansion.formatter;
+package com.github.itechbear.macroformatter.formatter;
 
-import com.github.itechbear.macroexpansion.MacroExpansionSettings;
-import com.github.itechbear.macroexpansion.option.ConfigurationPanel;
+import com.github.itechbear.macroformatter.MacroFormatterSettings;
+import com.github.itechbear.macroformatter.option.ConfigurationPanel;
 
 import java.io.*;
 
@@ -23,12 +23,12 @@ public class ClangFormatter {
     }
 
     public static String format(String text) {
-        String clang_path = MacroExpansionSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
+        String clang_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
         if (clang_path == null || clang_path.isEmpty()) {
             return text;
         }
 
-        String code_style = MacroExpansionSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
+        String code_style = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
         if (!code_style.isEmpty()) {
             code_style = "-style=" + code_style;
         }

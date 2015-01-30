@@ -1,12 +1,10 @@
-package com.github.itechbear.macroexpansion.provider;
+package com.github.itechbear.macroformatter.provider;
 
-import com.github.itechbear.macroexpansion.formatter.ClangFormatter;
-import com.github.itechbear.macroexpansion.formatter.Formatter;
+import com.github.itechbear.macroformatter.formatter.ClangFormatter;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.jetbrains.objc.documentation.CidrDocumentationProvider;
 import com.jetbrains.objc.psi.OCDefineDirective;
