@@ -5,12 +5,14 @@
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/CLion-MacroFormatter">itechbear@github</vendor>
 
   <description><![CDATA[
-      A clion plugin that shows <b>formatted</b> macro expansion in the documentation panel(Ctrl + Q).
+      A clion plugin that shows <b>formatted</b> macro expansion in the documentation panel(Ctrl + Q). <br /><br />
+
+      Two screenshots that shows the difference betwwen without and with this plugin are attached.
     ]]></description>
 
   <change-notes><![CDATA[
       0.2
-      Switch to clang-format.
+      Switch to clang-format.<br /><br />
 
       0.1
       Initial commit.
