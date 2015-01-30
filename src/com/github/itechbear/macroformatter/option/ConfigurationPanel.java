@@ -48,7 +48,7 @@ public class ConfigurationPanel implements Configurable {
         VerticalLayout verticalLayout = new VerticalLayout(1, 2);
         jPanel.setLayout(verticalLayout);
 
-        jFilePickerClang = new JFilePicker("Clang Path:", "...");
+        jFilePickerClang = new JFilePicker("clang-format Path:", "...");
         jLabeledCombox = new JLabeledCombox("Code Style: ");
 
         reset();
