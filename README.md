@@ -1,7 +1,19 @@
 CLion-MacroFormatter
 ====================
 
-A jetbrains c++ ide plugin that shows macro expansion in the quick navigation info panel
+A CLion plugin that shows formatted macro expansion in the code documentation panel
+
+Requirements
+============
+
+In order to use this plugin, you should install clang-format. Usually, you just need to install clang.
+
+Usage
+=====
+
+ - Install this plugin
+ - Go to "Settings -> Other Settings -> Macro Formatter", set the path of clang-format.
+ - Press Ctrl + Q with cursor focused on a macro.
 
 Screenshots
 ===========
