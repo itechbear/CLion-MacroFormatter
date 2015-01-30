@@ -8,6 +8,11 @@ Requirements
 
 In order to use this plugin, you should install clang-format. Usually, you just need to install clang.
 
+Installion
+==========
+
+ - [jetbrains plugin repository](https://plugins.jetbrains.com/plugin/7674)
+
 Usage
 =====
 
