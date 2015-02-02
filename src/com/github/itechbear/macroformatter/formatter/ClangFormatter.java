@@ -10,22 +10,24 @@ import java.io.*;
  */
 public class ClangFormatter {
     public static String format(String text) {
-        String clang_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
-        if (clang_path == null || clang_path.isEmpty()) {
-            clang_path = "clang-format";
+        String clang_format_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
+        if (clang_format_path == null || clang_format_path.isEmpty()) {
+            clang_format_path = "clang-format";
         }
 
-        String code_style = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
-        if (code_style != null && !code_style.isEmpty()) {
-            code_style = "-style=" + code_style;
+        String code_style_name = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
+        if (code_style_name != null && !code_style_name.isEmpty()) {
+            code_style_name = "-style=" + code_style_name;
         }
 
         final Process process;
         final StringBuilder stringBuilder = new StringBuilder();
         try {
-            process = Runtime.getRuntime().exec(new String[] {clang_path, code_style});
+            process = Runtime.getRuntime().exec(new String[] {clang_format_path, code_style_name});
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println("Failed to execute clang-format! Please check your settings (Settings -> Other Settings -> Macro Expansion)");
+            System.out.println("Current clang-format path: " + clang_format_path);
             return text;
         }
 
