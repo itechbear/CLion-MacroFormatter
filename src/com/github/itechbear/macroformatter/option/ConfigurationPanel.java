@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -22,11 +24,14 @@ public class ConfigurationPanel implements Configurable {
     private boolean modified = false;
     private JFilePicker jFilePickerClang;
     private JLabeledCombox jLabeledCombox;
+    private JCheckBox jCheckBox;
     private OptionModifiedListener listener = new OptionModifiedListener(this);
     private ComboxItemListener combox_listener = new ComboxItemListener(this);
+    private CheckboxListener checkbox_listener = new CheckboxListener(this);
 
     public static final String OPTION_KEY_CLANG = "macroformatter.clang";
     public static final String OPTION_KEY_STYLE = "macroformatter.style";
+    public static final String OPTION_KEY_CHECK = "macroformatter.check";
 
     @Nls
     @Override
@@ -50,12 +55,15 @@ public class ConfigurationPanel implements Configurable {
 
         jFilePickerClang = new JFilePicker("clang-format Path:", "...");
         jLabeledCombox = new JLabeledCombox("Code Style: ");
+        jCheckBox = new JCheckBox("Automatically check path of clang-format and warn if it is not found.");
 
         reset();
 
         jFilePickerClang.getTextField().getDocument().addDocumentListener(listener);
         jLabeledCombox.getCombobox().addItemListener(combox_listener);
+        jCheckBox.addActionListener(checkbox_listener);
 
+        jPanel.add(jCheckBox);
         jPanel.add(jFilePickerClang);
         jPanel.add(jLabeledCombox);
 
@@ -75,6 +83,7 @@ public class ConfigurationPanel implements Configurable {
     public void apply() throws ConfigurationException {
         MacroFormatterSettings.set(OPTION_KEY_CLANG, jFilePickerClang.getTextField().getText());
         MacroFormatterSettings.set(OPTION_KEY_STYLE, String.valueOf(jLabeledCombox.getCombobox().getSelectedItem()));
+        MacroFormatterSettings.set(OPTION_KEY_CHECK, String.valueOf(jCheckBox.isSelected()));
         modified = false;
     }
 
@@ -92,6 +101,13 @@ public class ConfigurationPanel implements Configurable {
             jLabeledCombox.getCombobox().setSelectedItem(code_style);
         }
 
+        String auto_check = MacroFormatterSettings.get(OPTION_KEY_CHECK);
+        if (auto_check != null && !auto_check.isEmpty()) {
+            jCheckBox.setSelected(Boolean.valueOf(auto_check));
+        } else {
+            jCheckBox.setSelected(true);
+        }
+
         modified = false;
     }
 
@@ -99,6 +115,7 @@ public class ConfigurationPanel implements Configurable {
     public void disposeUIResources() {
         jFilePickerClang.getTextField().getDocument().removeDocumentListener(listener);
         jLabeledCombox.getCombobox().removeItemListener(combox_listener);
+        jCheckBox.removeActionListener(checkbox_listener);
     }
 
     private static class OptionModifiedListener implements DocumentListener {
@@ -132,6 +149,19 @@ public class ConfigurationPanel implements Configurable {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
+            configuration.setModified(true);
+        }
+    }
+
+    private static class CheckboxListener implements ActionListener {
+        private final ConfigurationPanel configuration;
+
+        CheckboxListener(ConfigurationPanel configuration) {
+            this.configuration = configuration;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
             configuration.setModified(true);
         }
     }
