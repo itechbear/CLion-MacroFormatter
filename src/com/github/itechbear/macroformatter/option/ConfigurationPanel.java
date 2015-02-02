@@ -82,7 +82,7 @@ public class ConfigurationPanel implements Configurable {
     public void reset() {
         String clang_path = MacroFormatterSettings.get(OPTION_KEY_CLANG);
         if (clang_path == null || clang_path.isEmpty()) {
-            jFilePickerClang.getTextField().setText("clang-format");
+            jFilePickerClang.getTextField().setText("/usr/bin/clang-format");
         } else {
             jFilePickerClang.getTextField().setText(clang_path);
         }

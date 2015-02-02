@@ -12,7 +12,7 @@ public class ClangFormatter {
     public static String format(String text) {
         String clang_format_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
         if (clang_format_path == null || clang_format_path.isEmpty()) {
-            clang_format_path = "clang-format";
+            clang_format_path = "/usr/bin/clang-format";
         }
 
         String code_style_name = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
