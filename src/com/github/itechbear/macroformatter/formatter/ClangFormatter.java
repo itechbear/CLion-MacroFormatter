@@ -9,19 +9,6 @@ import java.io.*;
  * Created by itechbear on 2015/1/30.
  */
 public class ClangFormatter {
-    private static void pipeStream(InputStream input, OutputStream output)
-            throws IOException {
-        byte buffer[] = new byte[1024];
-        int numRead = 0;
-
-        do {
-            numRead = input.read(buffer);
-            output.write(buffer, 0, numRead);
-        } while (input.available() > 0);
-
-        output.flush();
-    }
-
     public static String format(String text) {
         String clang_path = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CLANG);
         if (clang_path == null || clang_path.isEmpty()) {
@@ -29,9 +16,10 @@ public class ClangFormatter {
         }
 
         String code_style = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
-        if (!code_style.isEmpty()) {
+        if (code_style != null && !code_style.isEmpty()) {
             code_style = "-style=" + code_style;
         }
+
         final Process process;
         final StringBuilder stringBuilder = new StringBuilder();
         try {
