@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.itechbear.clion-macroformatter</id>
   <name>CLion-MacroFormatter</name>
-  <version>0.2</version>
+  <version>0.2.1</version>
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/CLion-MacroFormatter">itechbear@github</vendor>
 
   <description><![CDATA[
@@ -13,6 +13,9 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      0.2.1
+      Small bugfix.
+
       0.2
       Switch to clang-format.<br /><br />
 
