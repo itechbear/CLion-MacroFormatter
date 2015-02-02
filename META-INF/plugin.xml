@@ -13,14 +13,11 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      0.2.1
-      Small bugfix.
+      0.2.1 Small bugfix. <br /><br />
 
-      0.2
-      Switch to clang-format.<br /><br />
+      0.2 Switch to clang-format.<br /><br />
 
-      0.1
-      Initial commit.
+      0.1 Initial commit.
     ]]>
   </change-notes>
 
