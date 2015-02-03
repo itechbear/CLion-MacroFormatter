@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 /**
  * Created by nicholas on 7/27/14.
  */
-public class Formatter {
+public class CLionFormatter {
     public static String format(PsiElement psiElement, String text) {
         Project project = psiElement.getProject();
         Language language = psiElement.getLanguage();

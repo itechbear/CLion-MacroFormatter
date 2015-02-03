@@ -55,7 +55,7 @@ public class ConfigurationPanel implements Configurable {
 
         jFilePickerClang = new JFilePicker("clang-format Path:", "...");
         jLabeledCombox = new JLabeledCombox("Code Style: ");
-        jCheckBox = new JCheckBox("Automatically check path of clang-format and warn if it is not found.");
+        jCheckBox = new JCheckBox("Automatically show this page if clang-format is not found.");
 
         reset();
 

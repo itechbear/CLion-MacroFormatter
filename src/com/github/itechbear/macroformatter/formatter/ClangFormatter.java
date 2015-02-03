@@ -2,6 +2,12 @@ package com.github.itechbear.macroformatter.formatter;
 
 import com.github.itechbear.macroformatter.MacroFormatterSettings;
 import com.github.itechbear.macroformatter.option.ConfigurationPanel;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.options.ShowSettingsUtil;
+import javafx.application.Application;
 
 import java.io.*;
 
@@ -18,16 +24,34 @@ public class ClangFormatter {
         String code_style_name = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_STYLE);
         if (code_style_name != null && !code_style_name.isEmpty()) {
             code_style_name = "-style=" + code_style_name;
+        } else {
+            code_style_name = "";
+        }
+
+        boolean is_auto_check = false;
+        String auto_check = MacroFormatterSettings.get(ConfigurationPanel.OPTION_KEY_CHECK);
+        if (auto_check == null || auto_check.isEmpty() || Boolean.valueOf(auto_check)) {
+            is_auto_check = true;
         }
 
         final Process process;
         final StringBuilder stringBuilder = new StringBuilder();
         try {
-            process = Runtime.getRuntime().exec(new String[] {clang_format_path, code_style_name});
+            process = Runtime.getRuntime().exec(new String[]{clang_format_path, code_style_name});
         } catch (IOException e) {
             // e.printStackTrace();
-            System.out.println("Failed to execute clang-format! Please check your settings (Settings -> Other Settings -> Macro Expansion)");
-            System.out.println("Current clang-format path: " + clang_format_path);
+            if (is_auto_check) {
+                ApplicationManager.getApplication().invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ShowSettingsUtil.getInstance().showSettingsDialog(null, ConfigurationPanel.class);
+                    }
+                });
+            } else {
+                String message = "Failed to execute clang-format! Please check your settings (Settings -> Other Settings -> Macro Expansion)" +
+                        "<br /> Current clang-format path: " + clang_format_path;
+                Notifications.Bus.notify(new Notification("ApplicationName", "CLion-MacroFormatter", message, NotificationType.WARNING));
+            }
             return text;
         }
 
@@ -35,10 +59,10 @@ public class ClangFormatter {
             @Override
             public void run() {
                 InputStream inputStream = process.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader (inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 try {
-                    while ((line = reader.readLine ()) != null) {
+                    while ((line = reader.readLine()) != null) {
                         stringBuilder.append(line + "\n");
                     }
                 } catch (IOException e) {
@@ -58,10 +82,10 @@ public class ClangFormatter {
             @Override
             public void run() {
                 InputStream inputStream = process.getErrorStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader (inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 try {
-                    while ((line = reader.readLine ()) != null) {
+                    while ((line = reader.readLine()) != null) {
                         System.out.println(line);
                     }
                 } catch (IOException e) {
