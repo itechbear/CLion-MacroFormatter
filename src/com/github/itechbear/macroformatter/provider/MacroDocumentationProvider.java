@@ -6,9 +6,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.jetbrains.objc.documentation.CidrDocumentationProvider;
-import com.jetbrains.objc.psi.OCDefineDirective;
-import com.jetbrains.objc.psi.OCMacroCall;
+import com.jetbrains.cidr.lang.documentation.CidrDocumentationProvider;
+import com.jetbrains.cidr.lang.psi.OCDefineDirective;
+import com.jetbrains.cidr.lang.psi.OCMacroCall;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
