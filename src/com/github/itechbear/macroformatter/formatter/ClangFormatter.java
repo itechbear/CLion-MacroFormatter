@@ -24,7 +24,7 @@ public class ClangFormatter {
         if (code_style_name != null && !code_style_name.isEmpty()) {
             code_style_name = "-style=" + code_style_name;
         } else {
-            code_style_name = "";
+            code_style_name = "-style=Google";
         }
 
         boolean is_auto_check = false;
@@ -38,7 +38,7 @@ public class ClangFormatter {
         try {
             process = Runtime.getRuntime().exec(new String[]{clang_format_path, code_style_name});
         } catch (IOException e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             if (is_auto_check) {
                 ApplicationManager.getApplication().invokeLater(new Runnable() {
                     @Override
@@ -102,7 +102,7 @@ public class ClangFormatter {
 
         OutputStream outputStream = process.getOutputStream();
         try {
-            outputStream.write((text).getBytes());
+            outputStream.write(text.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
