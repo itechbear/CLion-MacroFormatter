@@ -18,6 +18,7 @@ Usage
 
  - Install this plugin
  - Go to "Settings -> Other Settings -> Macro Formatter", set the path of clang-format.
+ - Put your cursor on a C/C++ macro
  - Use View | Quick Documentation or the corresponding keyboard shortcut (by default: Ctrl+Q on Windows/Linux and F1 on Mac) with the cursor focused on a macro.
 
 Screenshots
