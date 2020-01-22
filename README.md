@@ -36,7 +36,7 @@ Screenshots
 Change log
 ==========
 
-  - 0.5.0 Update to get compatible with CLion 2019.3
+  - 2019.3 Update to get compatible with CLion 2019.3; Add support for IDE Builtin formatter.
   - 0.4.1 Set default code style to Google.
   - 0.4.0 Keep compatiblity with the latest CLion eap. 
   - 0.3.0 Warn the user if clang-format is not found. 

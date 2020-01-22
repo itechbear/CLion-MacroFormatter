@@ -7,13 +7,13 @@
   <description><![CDATA[
       A clion plugin that shows <b>formatted</b> macro expansion in the documentation panel(Ctrl + Q). <br /><br />
 
-      <b>You need to install clang-format(usually included in the clang package) to use this plugin.</b><br /><br />
+      <b>You need to install clang-format(usually included in the clang package) if you choose to use it.</b><br /><br />
 
       Two screenshots that shows the difference betwwen without and with this plugin are attached.
     ]]></description>
 
   <change-notes><![CDATA[
-      0.5.0 Update to get compatible with CLion 2019.3
+      2019.3 Update to get compatible with CLion 2019.3; Add support for IDE Builtin formatter.
 
       0.4.1 Set default code style to Google.
 
