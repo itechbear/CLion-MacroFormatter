@@ -1,0 +1,25 @@
+plugins {
+  id "org.jetbrains.intellij" version "0.4.15"
+  id "org.jetbrains.kotlin.jvm" version "1.3.21"
+}
+
+group 'com.github.itechbear'
+version "${clionVersion}"
+
+repositories {
+  mavenCentral()
+}
+
+intellij {
+  pluginName 'CLion-MacroFormatter'
+  version "CL-${clionVersion}"
+  downloadSources true
+
+  plugins = []
+
+  updateSinceUntilBuild true
+}
+
+patchPluginXml {
+  changeNotes ""
+}

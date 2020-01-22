@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.github.itechbear.clion-macroformatter</id>
   <name>CLion-MacroFormatter</name>
-  <version>0.4.1</version>
+  <version>0.5.0</version>
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/CLion-MacroFormatter">itechbear</vendor>
 
   <description><![CDATA[
@@ -13,6 +13,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      0.5.0 Update to get compatible with CLion 2019.3
+
       0.4.1 Set default code style to Google.
 
       0.4.0 Keep compatiblity with the latest CLion eap. <br /><br />
@@ -28,17 +30,18 @@
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="139.0"/>
+  <idea-version since-build="193" until-build="193.*"/>
 
   <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.clion</depends>
+  <depends>com.intellij.modules.cidr.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
     <lang.documentationProvider language="ObjectiveC" implementationClass="com.github.itechbear.macroformatter.provider.MacroDocumentationProvider" order="first" />
-    <applicationConfigurable instance="com.github.itechbear.macroformatter.option.ConfigurationPanel"
+    <applicationConfigurable instance="com.github.itechbear.macroformatter.ui.ConfigurationPanel"
                              displayName="Macro Formatter"/>
   </extensions>
 
